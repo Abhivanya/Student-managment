@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { createStudentController } from "@/modules/student/student.controller";
+import { asyncHandler } from "@/utils/async-handler";
 
 export async function GET() {
   const students = await prisma.student.findMany();
@@ -8,6 +9,6 @@ export async function GET() {
   });
 }
 
-export async function POST(request: Request) {
+export const POST = asyncHandler(async (request: Request) => {
   return createStudentController(request);
-}
+});

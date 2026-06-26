@@ -1,3 +1,4 @@
+import { successResponse } from "@/utils/api-response";
 import { createStudent } from "./student.service";
 import { studetnSchema } from "./studetn.schema";
 
@@ -7,10 +8,5 @@ export async function createStudentController(request: Request) {
   const parsedBody = studetnSchema.parse(body);
 
   const student = await createStudent(parsedBody);
-  return Response.json(
-    {
-      student,
-    },
-    { status: 201 },
-  );
+  return successResponse(student, "Student created successfully", 201);
 }
