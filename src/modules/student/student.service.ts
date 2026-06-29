@@ -9,3 +9,15 @@ export async function createStudent(data: {
     data,
   });
 }
+
+export async function getStudentById(id: string) {
+  return prisma.student.findUnique({
+    where: { id },
+  });
+}
+
+export async function getStudentByEmail(email: string) {
+  return prisma.student.findUnique({
+    where: { email },
+  });
+}

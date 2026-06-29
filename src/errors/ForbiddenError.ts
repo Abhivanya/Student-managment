@@ -1,7 +1,7 @@
-import { ApiError } from "next/dist/server/api-utils";
+import { AppError } from "./AppError";
 
-export class ForbiddenError extends ApiError {
+export class ForbiddenError extends AppError {
   constructor(message: string = "Forbidden") {
-    super(403, message);
+    super(message, 403);
   }
 }

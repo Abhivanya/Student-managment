@@ -1,7 +1,7 @@
-import { ApiError } from "next/dist/server/api-utils";
+import { AppError } from "./AppError";
 
-export class ConflictError extends ApiError {
+export class ConflictError extends AppError {
   constructor(message: string = "Conflict Error") {
-    super(409, message);
+    super(message, 409);
   }
 }

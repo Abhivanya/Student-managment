@@ -1,7 +1,7 @@
-import { ApiError } from "next/dist/server/api-utils";
+import { AppError } from "./AppError";
 
-export class UnauthorizedError extends ApiError {
+export class UnauthorizedError extends AppError {
   constructor(message: string = "Unauthorized") {
-    super(401, message);
+    super(message, 401);
   }
 }

@@ -1,7 +1,7 @@
-import { ApiError } from "next/dist/server/api-utils";
+import { AppError } from "./AppError";
 
-export class ValidationError extends ApiError {
+export class ValidationError extends AppError {
   constructor(message: string = "validation Failed") {
-    super(400, message);
+    super(message, 400);
   }
 }

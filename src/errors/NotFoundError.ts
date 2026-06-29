@@ -1,7 +1,7 @@
-import { ApiError } from "next/dist/server/api-utils";
+import { AppError } from "./AppError";
 
-export class NotFoundError extends ApiError {
+export class NotFoundError extends AppError {
   constructor(messsage: string = "Not found") {
-    super(404, messsage);
+    super(messsage, 404);
   }
 }
