@@ -1,4 +1,4 @@
-import { ValidationError } from "@/errors/ValidationError";
+import { ValidationError } from "@/shared/errors/ValidationError";
 import { ZodSchema } from "zod";
 
 export function validate<T>(schema: ZodSchema<T>, data: unknown): T {

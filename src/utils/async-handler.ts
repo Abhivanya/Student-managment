@@ -1,9 +1,18 @@
-import { AppError } from "@/errors/AppError";
+import { NextRequest, NextResponse } from "next/server";
+import { AppError } from "@/shared/errors/AppError";
 
-export function asyncHandler(handler: (request: Request) => Promise<Response>) {
-  return async (request: Request) => {
+type AsyncHandler<T extends unknown[] = []> = (
+  request: NextRequest,
+  ...args: T
+) => Promise<Response | NextResponse>;
+
+export function asyncHandler<T extends unknown[]>(handler: AsyncHandler<T>) {
+  return async (
+    request: NextRequest,
+    ...args: T
+  ): Promise<Response | NextResponse> => {
     try {
-      await handler(request);
+      return await handler(request, ...args);
     } catch (error) {
       if (error instanceof AppError) {
         return Response.json(
@@ -11,7 +20,9 @@ export function asyncHandler(handler: (request: Request) => Promise<Response>) {
             success: false,
             message: error.message,
           },
-          { status: error.statusCode },
+          {
+            status: error.statusCode,
+          },
         );
       }
 
@@ -22,7 +33,9 @@ export function asyncHandler(handler: (request: Request) => Promise<Response>) {
           success: false,
           message: "Internal Server Error",
         },
-        { status: 500 },
+        {
+          status: 500,
+        },
       );
     }
   };

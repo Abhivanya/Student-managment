@@ -1,7 +1,7 @@
 import { successResponse } from "@/utils/api-response";
 import { createStudent, getStudentByEmail } from "./student.service";
 import { studentSchema } from "./studetn.schema";
-import { ConflictError } from "@/errors/ConflictError";
+import { ConflictError } from "@/shared/errors/ConflictError";
 import { validate } from "@/utils/validate";
 
 export async function createStudentController(request: Request) {
